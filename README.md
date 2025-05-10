@@ -1,161 +1,137 @@
 # Hotel Booking Application
 
-Welcome to the Hotel Booking Application! This project provides both a Streamlit web application and a REST API version that allows you to search for hotels, book them, and simulate a payment process—all without any real transactions.
+A modern full-stack hotel booking platform built with React/TypeScript and Flask, featuring real-time hotel search, secure booking management, and an AI-powered chat assistant.
 
-## Project Versions
+## Tech Stack
 
-This repository contains two versions of the hotel booking application:
+### Frontend
+- React with TypeScript
+- Vite for build tooling
+- Tailwind CSS for styling
+- Shadcn UI components
+- React Router for navigation
 
-1. **Streamlit Web App** (`app.py`): A user-friendly web application built with Python and Streamlit.
-2. **REST API** (`api.py`): A Flask-based REST API that can be used with any frontend.
+### Backend
+- Flask (Python)
+- SQLite for database
+- SerpAPI for hotel data
+- Groq API for chat functionality
 
-## What This Application Does
+## Features
 
-- **Search Hotels**: Look for hotels in any city using real data from the SerpAPI Google Hotels API.
-- **Book a Hotel**: Select a hotel, specify the number of people and rooms, and proceed to a booking summary.
-- **Simulate Payment**: Enter fake payment details to mimic a real payment process (nothing is actually charged).
-- **Chat with a Bot**: Use a chatbot to help with booking or answer travel-related questions.
-- **View Bookings**: See a list of your past bookings.
+- **Real-time Hotel Search**: Integration with Google Hotels API via SerpAPI
+- **User Authentication**: Secure login and registration system
+- **Booking Management**: Create and track hotel bookings
+- **Modern UI Components**: Built with Shadcn UI and Tailwind CSS
+- **AI Chat Assistant**: Integrated with Groq API for travel assistance
+- **Responsive Design**: Full mobile responsiveness
 
-## Prerequisites
+## Project Structure
 
-Before you start, make sure you have the following:
+```
+├── frontend/                # React frontend
+│   ├── src/
+│   │   ├── components/     # UI components
+│   │   │   ├── auth/      # Authentication components
+│   │   │   ├── home/      # Home page components
+│   │   │   ├── hotels/    # Hotel-related components
+│   │   │   ├── layout/    # Layout components
+│   │   │   └── ui/        # Shadcn UI components
+│   │   ├── hooks/         # Custom React hooks
+│   │   ├── lib/           # Utility functions
+│   │   └── pages/         # Application pages
+│   └── public/            # Static assets
+├── api.py                  # Flask backend server
+├── requirements.txt        # Python dependencies
+└── *.bat                  # Utility scripts
+```
 
-- Python 3.7 or higher
-- Internet Connection
-- API Keys:
-  - A SerpAPI Key for hotel search data (from [serpapi.com](https://serpapi.com))
-  - A Groq API Key for the chatbot feature (from [groq.com](https://groq.com))
+## Getting Started
 
-## Setup Guide
+### Prerequisites
+- Python 3.8+
+- Node.js 16+
+- SerpAPI key
+- Groq API key
 
-### Step 1: Clone or Download the Repository
+### Installation
 
+1. **Clone the repository**
 ```bash
-git clone <repository-url>
-cd hotel-booking-application
+git clone https://github.com/safdarjung/hotel_booking_imp_UI.git
+cd hotel_booking_imp_UI
 ```
 
-### Step 2: Set Up API Keys
+2. **Set up the backend**
+   - Create a `.env` file in the root directory:
+   ```
+   SERPAPI_KEY=your_serpapi_key
+   GROQ_API_KEY=your_groq_api_key
+   ```
+   - Install Python dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-Create a `.env` file in the project root and add your API keys:
+3. **Set up the frontend**
+   - Navigate to the frontend directory:
+   ```bash
+   cd frontend
+   ```
+   - Install dependencies:
+   ```bash
+   npm install
+   ```
+   - Create a `.env` file in the frontend directory:
+   ```
+   VITE_API_URL=http://localhost:5000
+   ```
 
-```
-SERPAPI_KEY=your_serpapi_key
-GROQ_API_KEY=your_groq_api_key
-```
+### Running the Application
 
-### Step 3: Install Dependencies
-
+1. **Start the backend server**
 ```bash
-pip install -r requirements.txt
+.\run_backend.bat
 ```
+The API will be available at `http://localhost:5000`
 
-## Running the Applications
-
-### Option 1: Run the Streamlit Web App
-
+2. **Start the frontend development server**
 ```bash
-streamlit run app.py
+.\run_frontend.bat
 ```
+The application will be available at `http://localhost:5173`
 
-Your default web browser should automatically open to http://localhost:8501.
-
-### Option 2: Run the REST API
-
-```bash
-python api.py
-```
-
-The API will be accessible at http://localhost:5000.
+Alternatively, you can use `run.bat` to start both servers simultaneously.
 
 ## API Documentation
 
-For detailed information about the REST API endpoints, please refer to the [API Documentation](README_API.md).
+For detailed information about the REST API endpoints and integration guide, please refer to:
+- [API Documentation](README_API.md)
+- [Integration Guide](INTEGRATION.md)
+- [Deployment Guide](DEPLOYMENT_GUIDE.md)
 
-## Testing the API
+## Available Scripts
 
-We've included a comprehensive test script to demonstrate how to use the API:
+- `run_backend.bat`: Starts the Flask backend server
+- `run_frontend.bat`: Starts the Vite development server
+- `run.bat`: Starts both backend and frontend
+- `setup.bat`: Sets up the development environment
 
-```bash
-python test_api.py
-```
+## API Documentation
 
-This script will:
-1. Register a test user
-2. Log in with the test user
-3. Search for hotels
-4. Create a test booking
-5. Retrieve the user's bookings
-6. Test the chat feature
+For detailed information about the API endpoints and integration details, refer to:
+- [API Documentation](README_API.md)
+- [Integration Guide](INTEGRATION.md)
+- [Deployment Guide](DEPLOYMENT_GUIDE.md)
 
-The test script includes improved error handling to ensure tests can continue even if some tests fail, and provides a summary of test results at the end.
+## Contributing
 
-## Streamlit App Features
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-- **User Authentication**: Register and log in to access the app.
-- **Hotel Search**: Search for hotels with various filters.
-- **Booking Management**: View and manage your bookings.
-- **Interactive Chat**: Get help from a travel assistant bot.
+## License
 
-## API Features
-
-- **RESTful Endpoints**: Standard HTTP methods for all operations.
-- **User Authentication**: Register and authenticate users.
-- **Hotel Search**: Comprehensive search with multiple parameters.
-- **Booking Management**: Create and retrieve bookings.
-- **Chat Functionality**: Interact with a travel assistant bot via API calls.
-- **CORS Support**: Cross-Origin Resource Sharing enabled for integration with any web frontend.
-
-## Technologies Used
-
-- **Frontend** (Streamlit App): Streamlit, Python
-- **Backend** (API): Flask, Flask-CORS, SQLite
-- **External Services**: SerpAPI (for hotel data), Groq (for chatbot functionality)
-
-## Development and Production
-
-### Development Mode
-The API runs in development mode by default, with debugging enabled.
-
-### Production Deployment
-For production deployment, consider:
-- Using a production WSGI server like Gunicorn or uWSGI
-- Setting up proper authentication mechanisms (JWT, OAuth)
-- Implementing rate limiting
-- Securing sensitive environment variables
-
-## Note
-
-This is a demonstration application. No real payments are processed, and all hotel data comes from the SerpAPI service.
-
-## Integration with Frontend
-
-This project now includes integration with a modern React frontend. The integration allows you to use all the API features through a beautiful, animated user interface.
-
-### Integration Features
-
-- **Full API Integration**: All API endpoints are accessible through the frontend
-- **Development Proxy**: Vite development server proxies API requests to avoid CORS issues
-- **Real-time API Connection**: React Query for efficient data fetching and caching
-- **Development Script**: Run both frontend and backend with a single command
-
-### Running the Integrated Application
-
-You can run both the frontend and backend together using the development script:
-
-```bash
-# Install Node.js dependencies first
-cd frontend
-npm install
-cd ..
-
-# Run the development script
-node dev.js
-```
-
-This will start both the Flask backend API and the React frontend development server.
-
-### Integration Documentation
-
-For detailed instructions on the frontend-backend integration, see [INTEGRATION.md](INTEGRATION.md).
+This project is licensed under the MIT License.
