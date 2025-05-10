@@ -1,163 +1,161 @@
-Hotel Booking App README
-Welcome to the Hotel Booking App! This is a user-friendly web application built with Python and Streamlit that allows you to search for hotels, book them, and simulate a payment process—all without any real transactions. It’s perfect for learning or testing a hotel booking system. This README is designed for someone with minimal coding knowledge to set up and run the app on their PC using a GitHub repository.
+# Hotel Booking Application
 
-What This App Does
-Search Hotels: Look for hotels in any city (e.g., Faridabad) using real data from the SerpAPI Google Hotels API.
-Book a Hotel: Select a hotel, specify the number of people and rooms, and proceed to a booking summary.
-Simulate Payment: Enter fake payment details to mimic a real payment process (nothing is actually charged).
-Chat with a Bot: Use a chatbot to help with booking or answer travel-related questions.
-View Bookings: See a list of your past bookings.
-Prerequisites
-Before you start, make sure you have the following on your computer:
+Welcome to the Hotel Booking Application! This project provides both a Streamlit web application and a REST API version that allows you to search for hotels, book them, and simulate a payment process—all without any real transactions.
 
-A Computer: Windows, macOS, or Linux will work.
-Internet Connection: To download the code and dependencies.
-GitHub Account: To access the repository (optional if you download the ZIP file).
-API Keys:
-A SerpAPI Key for hotel search data.
-A Groq API Key for the chatbot feature.
-Step-by-Step Setup Guide
-Step 1: Install Required Software
-You need to install a few tools to run the app. Don’t worry, I’ll guide you through each one.
+## Project Versions
 
-1.1 Install Python
-Check if Python is Installed:
-Open a terminal (Command Prompt on Windows, Terminal on macOS/Linux).
-Type python --version and press Enter.
-If you see a version number (e.g., Python 3.9.0), Python is installed. Skip to Step 1.2.
-If not, you need to install Python.
-Install Python:
-Go to python.org.
-Download the latest version (e.g., Python 3.11).
-Run the installer:
-On Windows: Check the box “Add Python to PATH” during installation.
-On macOS/Linux: The installer will handle everything.
-After installation, open a terminal again and type python --version to confirm.
-1.2 Install Git (Optional)
-Git helps you download the code from GitHub.
+This repository contains two versions of the hotel booking application:
 
-Check if Git is Installed:
-In your terminal, type git --version.
-If you see a version number (e.g., git version 2.30.0), Git is installed. Skip to Step 2.
-Install Git:
-Go to git-scm.com.
-Download and install Git for your operating system.
-Follow the default installation settings.
-1.3 Install a Code Editor (Optional but Recommended)
-A code editor like Visual Studio Code (VS Code) makes it easier to manage files.
+1. **Streamlit Web App** (`app.py`): A user-friendly web application built with Python and Streamlit.
+2. **REST API** (`api.py`): A Flask-based REST API that can be used with any frontend.
 
-Download VS Code from code.visualstudio.com.
-Install it and open it (you’ll use it in Step 3).
-Step 2: Get the Code from GitHub
-The code is hosted in a GitHub repository. Here’s how to get it:
+## What This Application Does
 
-Option 1: Clone the Repository (Using Git)
-Open your terminal.
-Navigate to a folder where you want to store the project:
-On Windows: cd Documents
-On macOS/Linux: cd ~
-Run this command to clone the repository (replace REPO_URL with the actual GitHub repository URL):
-text
+- **Search Hotels**: Look for hotels in any city using real data from the SerpAPI Google Hotels API.
+- **Book a Hotel**: Select a hotel, specify the number of people and rooms, and proceed to a booking summary.
+- **Simulate Payment**: Enter fake payment details to mimic a real payment process (nothing is actually charged).
+- **Chat with a Bot**: Use a chatbot to help with booking or answer travel-related questions.
+- **View Bookings**: See a list of your past bookings.
 
-Collapse
+## Prerequisites
 
-Wrap
+Before you start, make sure you have the following:
 
-Copy
-git clone REPO_URL
-Example: git clone https://github.com/username/hotel-booking-app.git
-Move into the project folder:
-text
+- Python 3.7 or higher
+- Internet Connection
+- API Keys:
+  - A SerpAPI Key for hotel search data (from [serpapi.com](https://serpapi.com))
+  - A Groq API Key for the chatbot feature (from [groq.com](https://groq.com))
 
-Collapse
+## Setup Guide
 
-Wrap
+### Step 1: Clone or Download the Repository
 
-Copy
-cd hotel-booking-app
-Option 2: Download as ZIP
-Go to the GitHub repository page in your browser.
-Click the green Code button and select Download ZIP.
-Extract the ZIP file to a folder on your computer (e.g., Documents/hotel-booking-app).
-Open the folder in your file explorer.
-Step 3: Set Up API Keys
-The app needs two API keys to work: one for SerpAPI (hotel search) and one for Groq (chatbot).
+```bash
+git clone <repository-url>
+cd hotel-booking-application
+```
 
-3.1 Get a SerpAPI Key
-Go to serpapi.com.
-Sign up for a free account (they offer a free plan with limited searches).
-After signing in, go to your dashboard.
-Copy your API Key (it looks like a long string of letters and numbers).
-3.2 Get a Groq API Key
-Go to groq.com.
-Sign up for an account.
-Once logged in, find your API key in your account settings or dashboard.
-Copy your API Key.
-3.3 Create a .env File
-Open the project folder (hotel-booking-app) in your file explorer or VS Code.
-Create a new file named .env (make sure it has no extension like .txt).
-On Windows: Right-click in the folder, select New > Text Document, name it .env, and remove the .txt extension.
-On macOS/Linux: In the terminal, run touch .env.
-Open the .env file in a text editor (like Notepad or VS Code).
-Add the following lines, replacing your_serpapi_key and your_groq_api_key with the keys you copied:
-text
+### Step 2: Set Up API Keys
 
-Collapse
+Create a `.env` file in the project root and add your API keys:
 
-Wrap
-
-Copy
+```
 SERPAPI_KEY=your_serpapi_key
 GROQ_API_KEY=your_groq_api_key
-Example:
-text
+```
 
-Collapse
+### Step 3: Install Dependencies
 
-Wrap
+```bash
+pip install -r requirements.txt
+```
 
-Copy
-SERPAPI_KEY=abc123def456ghi789
-GROQ_API_KEY=xyz987pqr654stu321
-Save the file.
-Step 4: Install Dependencies
-The app needs some Python libraries to run. We’ll install them using pip, which comes with Python.
+## Running the Applications
 
-Open a terminal and navigate to the project folder:
-text
+### Option 1: Run the Streamlit Web App
 
-Collapse
-
-Wrap
-
-Copy
-cd path/to/hotel-booking-app
-Example: cd Documents/hotel-booking-app
-Install the required libraries by running this command:
-text
-
-Collapse
-
-Wrap
-
-Copy
-pip install streamlit sqlite3 requests python-dotenv pandas groq
-This might take a few minutes.
-If you get an error like pip is not recognized, ensure Python was added to your PATH (reinstall Python and check the “Add Python to PATH” box).
-Step 5: Run the App
-Now you’re ready to run the app!
-
-In the terminal, make sure you’re in the project folder (hotel-booking-app).
-Run the following command to start the app:
-text
-
-Collapse
-
-Wrap
-
-Copy
+```bash
 streamlit run app.py
-Replace app.py with the name of the Python file containing the code (it’s usually app.py or main.py—check the repository).
-Example: streamlit run app.py
-Your default web browser should automatically open, and you’ll see the app running at http://localhost:8501.
-If it doesn’t open, copy the URL from the terminal (usually http://localhost:8501) and paste it into your browser.
+```
+
+Your default web browser should automatically open to http://localhost:8501.
+
+### Option 2: Run the REST API
+
+```bash
+python api.py
+```
+
+The API will be accessible at http://localhost:5000.
+
+## API Documentation
+
+For detailed information about the REST API endpoints, please refer to the [API Documentation](README_API.md).
+
+## Testing the API
+
+We've included a comprehensive test script to demonstrate how to use the API:
+
+```bash
+python test_api.py
+```
+
+This script will:
+1. Register a test user
+2. Log in with the test user
+3. Search for hotels
+4. Create a test booking
+5. Retrieve the user's bookings
+6. Test the chat feature
+
+The test script includes improved error handling to ensure tests can continue even if some tests fail, and provides a summary of test results at the end.
+
+## Streamlit App Features
+
+- **User Authentication**: Register and log in to access the app.
+- **Hotel Search**: Search for hotels with various filters.
+- **Booking Management**: View and manage your bookings.
+- **Interactive Chat**: Get help from a travel assistant bot.
+
+## API Features
+
+- **RESTful Endpoints**: Standard HTTP methods for all operations.
+- **User Authentication**: Register and authenticate users.
+- **Hotel Search**: Comprehensive search with multiple parameters.
+- **Booking Management**: Create and retrieve bookings.
+- **Chat Functionality**: Interact with a travel assistant bot via API calls.
+- **CORS Support**: Cross-Origin Resource Sharing enabled for integration with any web frontend.
+
+## Technologies Used
+
+- **Frontend** (Streamlit App): Streamlit, Python
+- **Backend** (API): Flask, Flask-CORS, SQLite
+- **External Services**: SerpAPI (for hotel data), Groq (for chatbot functionality)
+
+## Development and Production
+
+### Development Mode
+The API runs in development mode by default, with debugging enabled.
+
+### Production Deployment
+For production deployment, consider:
+- Using a production WSGI server like Gunicorn or uWSGI
+- Setting up proper authentication mechanisms (JWT, OAuth)
+- Implementing rate limiting
+- Securing sensitive environment variables
+
+## Note
+
+This is a demonstration application. No real payments are processed, and all hotel data comes from the SerpAPI service.
+
+## Integration with Frontend
+
+This project now includes integration with a modern React frontend. The integration allows you to use all the API features through a beautiful, animated user interface.
+
+### Integration Features
+
+- **Full API Integration**: All API endpoints are accessible through the frontend
+- **Development Proxy**: Vite development server proxies API requests to avoid CORS issues
+- **Real-time API Connection**: React Query for efficient data fetching and caching
+- **Development Script**: Run both frontend and backend with a single command
+
+### Running the Integrated Application
+
+You can run both the frontend and backend together using the development script:
+
+```bash
+# Install Node.js dependencies first
+cd frontend
+npm install
+cd ..
+
+# Run the development script
+node dev.js
+```
+
+This will start both the Flask backend API and the React frontend development server.
+
+### Integration Documentation
+
+For detailed instructions on the frontend-backend integration, see [INTEGRATION.md](INTEGRATION.md).

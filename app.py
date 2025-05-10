@@ -283,6 +283,18 @@ class GoogleHotelsAPIClient:
             st.error(error_message)
             return None
 
+def is_hotel_or_travel_related(message):
+    keywords = [
+        "hotel", "booking", "reservation", "travel", "flight", "destination",
+        "check-in", "check-out", "rooms", "vacation", "trip", "tour", "itinerary",
+        "payment", "city", "stay", "guest", "check availability", "room type",
+        "price", "rate", "accommodation", "lodging", "suite", "apartment", "hostel",
+        "check room", "book", "my bookings", "cancel booking", "refund", "hotel info",
+        "location", "address", "check status", "confirmation", "check price"
+    ]
+    message = message.lower()
+    return any(keyword in message for keyword in keywords)
+
 # Initialize session state
 if 'logged_in' not in st.session_state:
     st.session_state['logged_in'] = False
@@ -845,12 +857,18 @@ def chat_page(groq_client):
                     st.session_state['booking_state'] = "destination"
                     bot_response = "Sure! What is your destination?"
                     st.session_state['conversation_history'].append({"role": "assistant", "content": bot_response})
+                elif not is_hotel_or_travel_related(user_input):
+                    bot_response = "I do not have access to this information. I can only assist with hotel and travel-related topics."
+                    st.session_state['conversation_history'].append({"role": "assistant", "content": bot_response})
                 else:
                     try:
+                        # Insert system message for concise answers
+                        concise_system_message = {"role": "system", "content": "Answer concisely and to the point, only include important information or main points."}
+                        messages = [concise_system_message] + st.session_state['conversation_history']
                         response = groq_client.chat.completions.create(
                             model="llama-3.3-70b-versatile",
-                            messages=st.session_state['conversation_history'],
-                            max_tokens=1000,
+                            messages=messages,
+                            max_tokens=4096,
                             temperature=0.7,
                             top_p=0.9
                         )
